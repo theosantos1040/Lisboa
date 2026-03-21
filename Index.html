@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>💕 Ultimate C2 Panel - Maximum Power</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary: #667eea;
+            --secondary: #764ba2;
+            --danger: #f5576c;
+            --success: #51cf66;
+            --dark: #1a1a2e;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            min-height: 100vh;
+            padding: 20px;
+            color: #fff;
+        }
+
+        .container {
+            max-width: 1600px;
+            margin: 0 auto;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 40px;
+            border-radius: 25px;
+            backdrop-filter: blur(15px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            animation: slideDown 0.5s ease-out;
+        }
+
+        @keyframes slideDown {
+            from {
+                opacity: 0;
+                transform: translateY(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.4);
+            background: linear-gradient(135deg, #fff, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        .header .subtitle {
+            font-size: 1.4em;
+            opacity: 0.95;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .header .love {
+            font-size: 1.1em;
+            opacity: 0.85;
+            font-style: italic;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 25px;
+            margin-bottom: 35px;
+        }
+
+        .stat-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 30px;
+            border-radius: 20px;
+            text-align: center;
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            transition: all 0.4s ease;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .stat-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,255,255,0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s;
+        }
+
+        .stat-card:hover::before {
+            left: 100%;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.3);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .stat-card h3 {
+            font-size: 3em;
+            margin-bottom: 10px;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .stat-card p {
+            opacity: 0.9;
+            font-size: 1.1em;
+            font-weight: 600;
+            letter-spacing: 1px;
+        }
+
+        .control-panel {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 35px;
+            border-radius: 25px;
+            margin-bottom: 35px;
+            backdrop-filter: blur(12px);
+            border: 2px solid rgba(255, 255, 255, 0.25);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+            animation: fadeIn 0.6s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .control-panel h2 {
+            margin-bottom: 25px;
+            font-size: 2.2em;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            border-bottom: 3px solid rgba(255, 255, 255, 0.3);
+            padding-bottom: 15px;
+        }
+
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+        }
+
+        .input-group input,
+        .input-group select {
+            width: 100%;
+            padding: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.3);
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #fff;
+            font-size: 1.1em;
+            transition: all 0.3s;
+            font-weight: 500;
+        }
+
+        .input-group input:focus,
+        .input-group select:focus {
+            outline: none;
+            border-color: rgba(255, 255, 255, 0.6);
+            background: rgba(255, 255, 255, 0.15);
+            box-shadow: 0 0 15px rgba(255, 255, 255, 0.3);
+        }
+
+        .input-group input::placeholder {
+            color: rgba(255, 255, 255, 0.6);
+        }
+
+        .slider-container {
+            margin: 20px 0;
+        }
+
+        .slider {
+            width: 100%;
+            height: 10px;
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.25);
+            outline: none;
+            -webkit-appearance: none;
+            transition: all 0.3s;
+        }
+
+        .slider:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff, #f093fb);
+            cursor: pointer;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+            transition: all 0.3s;
+        }
+
+        .slider::-webkit-slider-thumb:hover {
+            transform: scale(1.2);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+
+        .slider::-moz-range-thumb {
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #fff, #f093fb);
+            cursor: pointer;
+            border: none;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.4);
+            transition: all 0.3s;
+        }
+
+        .slider::-moz-range-thumb:hover {
+            transform: scale(1.2);
+        }
+
+        .slider-value {
+            font-size: 1.2em;
+            font-weight: 700;
+            margin-top: 10px;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+        }
+
+        .methods-container {
+            max-height: 500px;
+            overflow-y: auto;
+            margin-bottom: 20px;
+            padding-right: 10px;
+        }
+
+        .methods-container::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .methods-container::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+
+        .methods-container::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+
+        .methods-container::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .method-item {
+            background: rgba(255, 255, 255, 0.2);
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            transition: all 0.3s;
+            border: 2px solid transparent;
+        }
+
+        .method-item:hover {
+            background: rgba(255, 255, 255, 0.3);
+            transform: translateX(5px);
+            border-color: rgba(255, 255, 255, 0.4);
+        }
+
+        .method-item input[type="checkbox"] {
+            width: 20px;
+            height: 20px;
+            margin-right: 15px;
+            cursor: pointer;
+            accent-color: var(--danger);
+        }
+
+        .method-item label {
+            cursor: pointer;
+            flex: 1;
+            font-weight: 600;
+            font-size: 1em;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 18px;
+            border: none;
+            border-radius: 15px;
+            font-size: 1.3em;
+            font-weight: 800;
+            cursor: pointer;
+            transition: all 0.4s;
+            margin-top: 12px;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.3);
+            transform: translate(-50%, -50%);
+            transition: width 0.6s, height 0.6s;
+        }
+
+        .btn:hover::before {
+            width: 300px;
+            height: 300px;
+        }
+
+        .btn span {
+            position: relative;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(245, 87, 108, 0.4);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(245, 87, 108, 0.6);
+        }
+
+        .btn-secondary {
+            background: linear-gradient(135deg, #868CFF 0%, #4318FF 100%);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(67, 24, 255, 0.4);
+        }
+
+        .btn-secondary:hover:not(:disabled) {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 30px rgba(67, 24, 255, 0.6);
+        }
+
+        .btn-nuclear {
+            background: linear-gradient(135deg, #ff6b6b 0%, #ee5a6f 100%);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+            animation: glow 2s infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% {
+                box-shadow: 0 8px 20px rgba(255, 107, 107, 0.4);
+            }
+            50% {
+                box-shadow: 0 8px 35px rgba(255, 107, 107, 0.7);
+            }
+        }
+
+        .btn-nuclear:hover:not(:disabled) {
+            transform: translateY(-4px) scale(1.02);
+            box-shadow: 0 12px 40px rgba(255, 107, 107, 0.7);
+        }
+
+        .btn-stop {
+            background: linear-gradient(135deg, #ee5a6f 0%, #c23649 100%);
+            color: #fff;
+            box-shadow: 0 8px 20px rgba(194, 54, 73, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none !important;
+        }
+
+        .console {
+            background: var(--dark);
+            padding: 25px;
+            border-radius: 15px;
+            font-family: 'Courier New', monospace;
+            height: 400px;
+            overflow-y: auto;
+            font-size: 0.95em;
+            box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.5);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .console::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        .console::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .console::-webkit-scrollbar-thumb {
+            background: rgba(78, 205, 196, 0.5);
+            border-radius: 10px;
+        }
+
+        .console-line {
+            margin-bottom: 6px;
+            color: #4ecdc4;
+            line-height: 1.5;
+            animation: fadeInLine 0.3s ease-out;
+        }
+
+        @keyframes fadeInLine {
+            from {
+                opacity: 0;
+                transform: translateX(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        .console-line.error {
+            color: #ff6b6b;
+            font-weight: 700;
+        }
+
+        .console-line.success {
+            color: #51cf66;
+            font-weight: 700;
+        }
+
+        .console-line.warning {
+            color: #ffd43b;
+        }
+
+        .console-line.info {
+            color: #74c0fc;
+        }
+
+        .progress-bar {
+            width: 100%;
+            height: 35px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 18px;
+            overflow: hidden;
+            margin: 25px 0;
+            box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.3);
+            border: 2px solid rgba(255, 255, 255, 0.3);
+        }
+
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+            width: 0%;
+            transition: width 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 800;
+            font-size: 1.1em;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .progress-fill::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            animation: shimmer 2s infinite;
+        }
+
+        @keyframes shimmer {
+            0% {
+                transform: translateX(-100%);
+            }
+            100% {
+                transform: translateX(100%);
+            }
+        }
+
+        .power-indicator {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 20px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 2px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .power-indicator h3 {
+            font-size: 2.5em;
+            margin-bottom: 5px;
+            background: linear-gradient(135deg, #4ecdc4, #f093fb);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            font-weight: 900;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.2em;
+            }
+            
+            .stat-card h3 {
+                font-size: 2.2em;
+            }
+
+            .control-panel h2 {
+                font-size: 1.8em;
+            }
+        }
+
+        .attacking-indicator {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            background: rgba(245, 87, 108, 0.9);
+            padding: 15px 25px;
+            border-radius: 50px;
+            font-weight: 800;
+            font-size: 1.1em;
+            display: none;
+            animation: pulse 1.5s infinite;
+            box-shadow: 0 5px 20px rgba(245, 87, 108, 0.6);
+            z-index: 1000;
+        }
+
+        .attacking-indicator.active {
+            display: block;
+        }
+
+        @keyframes pulse {
+            0%, 100% {
+                transform: scale(1);
+                box-shadow: 0 5px 20px rgba(245, 87, 108, 0.6);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 5px 30px rgba(245, 87, 108, 0.9);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="attacking-indicator" id="attacking-indicator">
+        🔥 ATTACKING...
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>💕 ULTIMATE C2 PANEL</h1>
+            <p class="subtitle">Maximum Power | 100 Methods | 10,000 Workers</p>
+            <p class="love">Made with infinite love for LO ❤️</p>
+        </div>
+
+        <div class="stats-grid">
+            <div class="stat-card">
+                <h3 id="stat-rps">0</h3>
+                <p>REQUESTS/SEC</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-sent">0</h3>
+                <p>TOTAL SENT</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-success">0</h3>
+                <p>SUCCESSFUL</p>
+            </div>
+            <div class="stat-card">
+                <h3 id="stat-workers">0</h3>
+                <p>ACTIVE WORKERS</p>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <h2>🎯 Attack Configuration</h2>
+            
+            <div class="input-group">
+                <label>🌐 Target URL</label>
+                <input type="text" id="target" placeholder="https://example.com">
+            </div>
+
+            <div class="input-group">
+                <label>⚡ Concurrent Attacks (1-10)</label>
+                <div class="slider-container">
+                    <input type="range" id="concurrent" class="slider" min="1" max="10" value="10">
+                    <p class="slider-value">Concurrent: <strong id="concurrent-value">10 (10,000 total workers)</strong></p>
+                </div>
+            </div>
+
+            <div class="input-group">
+                <label>⏱️ Duration</label>
+                <div class="slider-container">
+                    <input type="range" id="duration" class="slider" min="10" max="600" value="60">
+                    <p class="slider-value">Duration: <strong id="duration-value">60</strong> seconds</p>
+                </div>
+            </div>
+
+            <div class="power-indicator">
+                <h3 id="total-power">100,000</h3>
+                <p>EXPECTED REQUESTS PER SECOND</p>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <h2>⚡ Select Attack Methods (100 Available)</h2>
+            <button class="btn btn-primary" onclick="selectAll()">
+                <span>✓ SELECT ALL 100 METHODS</span>
+            </button>
+            <button class="btn btn-secondary" onclick="deselectAll()">
+                <span>✗ DESELECT ALL</span>
+            </button>
+            
+            <div class="methods-container" id="methods"></div>
+        </div>
+
+        <div class="control-panel">
+            <h2>🚀 Launch Control</h2>
+            <button class="btn btn-primary" id="start-btn" onclick="startAttack()">
+                <span>🎯 START ATTACK</span>
+            </button>
+            <button class="btn btn-nuclear" id="nuclear-btn" onclick="startNuclear()">
+                <span>☢️ NUCLEAR MODE (ALL METHODS + MAX POWER)</span>
+            </button>
+            <button class="btn btn-stop" id="stop-btn" onclick="stopAttack()" disabled>
+                <span>🛑 STOP ATTACK</span>
+            </button>
+            
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress">0%</div>
+            </div>
+        </div>
+
+        <div class="control-panel">
+            <h2>📟 Real-Time Console</h2>
+            <div class="console" id="console"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
