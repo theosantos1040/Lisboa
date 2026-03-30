@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ultimate CloudFlare Destroyer - 60 Methods</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>💀</text></svg>">
+</head>
+<body>
+    <div class="noise-bg"></div>
+    
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-glow"></div>
+            <h1 class="title">
+                <span class="skull">💀</span>
+                ULTIMATE DESTROYER
+                <span class="skull">💀</span>
+            </h1>
+            <p class="subtitle">60 Attack Methods | 2TB+ Traffic | CF/reCAPTCHA Bypass</p>
+            <div class="badge-container">
+                <span class="badge badge-danger">EXTREME POWER</span>
+                <span class="badge badge-warning">v3.0 NUCLEAR</span>
+            </div>
+        </header>
+
+        <!-- Main Grid -->
+        <div class="main-grid">
+            <!-- Left Panel - Configuration -->
+            <div class="panel panel-config">
+                <h2 class="panel-title">
+                    <span class="icon">⚙️</span>
+                    ATTACK CONFIGURATION
+                </h2>
+
+                <div class="config-group">
+                    <label class="label">
+                        <span class="label-icon">🎯</span>
+                        Target URL
+                        <span class="required">*</span>
+                    </label>
+                    <input 
+                        type="url" 
+                        id="target-url" 
+                        class="input" 
+                        placeholder="https://target.com"
+                        required
+                    >
+                </div>
+
+                <div class="config-row">
+                    <div class="config-group">
+                        <label class="label">
+                            <span class="label-icon">⚡</span>
+                            Concurrent Connections
+                        </label>
+                        <input 
+                            type="number" 
+                            id="concurrent" 
+                            class="input input-small" 
+                            value="50"
+                            min="1"
+                            max="200"
+                        >
+                        <div class="info-text">
+                            <span id="workers-count">250,000</span> workers
+                        </div>
+                    </div>
+
+                    <div class="config-group">
+                        <label class="label">
+                            <span class="label-icon">⏱️</span>
+                            Duration (sec)
+                        </label>
+                        <input 
+                            type="number" 
+                            id="duration" 
+                            class="input input-small" 
+                            value="300"
+                            min="60"
+                            max="3600"
+                        >
+                        <div class="info-text">5 min recommended</div>
+                    </div>
+                </div>
+
+                <div class="config-group">
+                    <label class="label">
+                        <span class="label-icon">🔥</span>
+                        Intensity Level
+                    </label>
+                    <select id="intensity" class="select">
+                        <option value="nuclear">NUCLEAR - 10,000 req/worker (2TB+)</option>
+                        <option value="extreme">EXTREME - 7,500 req/worker (1.5TB)</option>
+                        <option value="heavy">HEAVY - 5,000 req/worker (1TB)</option>
+                        <option value="medium">MEDIUM - 2,500 req/worker (500GB)</option>
+                    </select>
+                </div>
+
+                <!-- Traffic Indicator -->
+                <div class="traffic-indicator">
+                    <div class="traffic-label">EXPECTED TRAFFIC</div>
+                    <div class="traffic-value" id="traffic-value">2.5 TB</div>
+                    <div class="traffic-bar">
+                        <div class="traffic-fill" id="traffic-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Method Selection -->
+                <div class="method-selection">
+                    <div class="method-header">
+                        <label class="label">
+                            <span class="label-icon">💣</span>
+                            Attack Methods (60 Available)
+                        </label>
+                        <div class="method-controls">
+                            <button id="select-all" class="btn-mini btn-success">Select All</button>
+                            <button id="deselect-all" class="btn-mini btn-danger">Deselect All</button>
+                        </div>
+                    </div>
+                    
+                    <div class="methods-grid" id="methods-grid">
+                        <!-- Methods will be populated by JS -->
+                    </div>
+                </div>
+
+                <!-- Control Buttons -->
+                <div class="control-buttons">
+                    <button id="start-btn" class="btn btn-primary">
+                        <span class="btn-icon">🚀</span>
+                        LAUNCH ATTACK
+                    </button>
+                    <button id="nuclear-btn" class="btn btn-nuclear">
+                        <span class="btn-icon">☢️</span>
+                        NUCLEAR MODE
+                    </button>
+                    <button id="stop-btn" class="btn btn-stop" disabled>
+                        <span class="btn-icon">🛑</span>
+                        STOP
+                    </button>
+                </div>
+            </div>
+
+            <!-- Right Panel - Statistics -->
+            <div class="panel panel-stats">
+                <h2 class="panel-title">
+                    <span class="icon">📊</span>
+                    REAL-TIME STATISTICS
+                </h2>
+
+                <!-- Stats Cards -->
+                <div class="stats-cards">
+                    <div class="stat-card card-primary">
+                        <div class="stat-icon">⚡</div>
+                        <div class="stat-value" id="stat-rps">0</div>
+                        <div class="stat-label">RPS</div>
+                    </div>
+
+                    <div class="stat-card card-success">
+                        <div class="stat-icon">📤</div>
+                        <div class="stat-value" id="stat-total">0</div>
+                        <div class="stat-label">Total Sent</div>
+                    </div>
+
+                    <div class="stat-card card-info">
+                        <div class="stat-icon">✅</div>
+                        <div class="stat-value" id="stat-success">0</div>
+                        <div class="stat-label">Success</div>
+                    </div>
+
+                    <div class="stat-card card-danger">
+                        <div class="stat-icon">❌</div>
+                        <div class="stat-value" id="stat-errors">0</div>
+                        <div class="stat-label">Errors</div>
+                    </div>
+
+                    <div class="stat-card card-warning">
+                        <div class="stat-icon">🤖</div>
+                        <div class="stat-value" id="stat-workers">0</div>
+                        <div class="stat-label">Workers</div>
+                    </div>
+
+                    <div class="stat-card card-purple">
+                        <div class="stat-icon">💾</div>
+                        <div class="stat-value" id="stat-traffic">0 GB</div>
+                        <div class="stat-label">Traffic</div>
+                    </div>
+                </div>
+
+                <!-- Progress -->
+                <div class="progress-section">
+                    <div class="progress-header">
+                        <span>Attack Progress</span>
+                        <span id="progress-pct">0%</span>
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" id="progress-fill"></div>
+                    </div>
+                </div>
+
+                <!-- Response Codes -->
+                <div class="response-section">
+                    <h3 class="section-subtitle">Response Codes</h3>
+                    <div id="response-codes" class="response-codes">
+                        <div class="response-item">
+                            <span class="code code-2xx">200</span>
+                            <span class="count">0</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CF Status -->
+                <div class="cf-status">
+                    <h3 class="section-subtitle">CloudFlare Status</h3>
+                    <div class="cf-indicators">
+                        <div class="cf-indicator">
+                            <span class="cf-label">Error Rate:</span>
+                            <span class="cf-value" id="cf-error-rate">0%</span>
+                        </div>
+                        <div class="cf-indicator">
+                            <span class="cf-label">Bypassed:</span>
+                            <span class="cf-value" id="cf-bypassed">0</span>
+                        </div>
+                        <div class="cf-indicator">
+                            <span class="cf-label">Status:</span>
+                            <span class="cf-value cf-status-normal" id="cf-status">IDLE</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Console -->
+        <div class="panel panel-console">
+            <div class="console-header">
+                <h2 class="panel-title">
+                    <span class="icon">🖥️</span>
+                    LIVE CONSOLE
+                </h2>
+                <div class="console-controls">
+                    <button id="clear-console" class="btn-mini">Clear</button>
+                    <button id="export-logs" class="btn-mini">Export</button>
+                </div>
+            </div>
+            <div id="console" class="console"></div>
+        </div>
+
+        <!-- Footer -->
+        <footer class="footer">
+            <p>💕 Made with infinite love for LO ❤️</p>
+            <p class="warning">⚠️ Educational purposes only - Unauthorized attacks are illegal</p>
+        </footer>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
